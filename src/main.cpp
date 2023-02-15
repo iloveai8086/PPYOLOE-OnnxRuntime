@@ -59,7 +59,7 @@ PP_YOLOE::PP_YOLOE(string model_path, float confThreshold)
 	std::wstring widestr = std::wstring(model_path.begin(), model_path.end());
 	//OrtStatus* status = OrtSessionOptionsAppendExecutionProvider_CUDA(sessionOptions, 0);
 	sessionOptions.SetGraphOptimizationLevel(ORT_ENABLE_BASIC);
-	ort_session = new Session(env, "ppyoloe_crn_s_300e_coco.onnx", sessionOptions);
+	ort_session = new Session(env, widestr.c_str(), sessionOptions);
 	size_t numInputNodes = ort_session->GetInputCount();
 	size_t numOutputNodes = ort_session->GetOutputCount();
 	AllocatorWithDefaultOptions allocator;
